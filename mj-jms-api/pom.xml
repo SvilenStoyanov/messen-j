@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.svistoyanov.mj</groupId>
-        <artifactId>messen-j</artifactId>
+        <artifactId>mj-parent</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jms-api</artifactId>
-    <name>messen-j jms-api</name>
+    <artifactId>mj-jms-api</artifactId>
+    <name>Jms API</name>
     <packaging>jar</packaging>
 
     <dependencies>

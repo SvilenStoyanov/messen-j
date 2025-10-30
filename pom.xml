@@ -3,12 +3,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.svistoyanov.mj</groupId>
-    <artifactId>messen-j</artifactId>
+    <artifactId>mj-parent</artifactId>
+    <name>Messen-J parent</name>
     <packaging>pom</packaging>
     <version>1.0.1-SNAPSHOT</version>
 
+    <organization>
+        <name>SvilenStoyanov</name>
+        <url>https://github.com/SvilenStoyanov</url>
+    </organization>
+
     <modules>
-        <module>jms-api</module>
+        <module>mj-jms-api</module>
+        <module>mj-jms-client</module>
+        <module>mj-server</module>
+        <module>mj-business-logic</module>
+        <module>mj-dao</module>
+        <module>mj-dao-api</module>
+        <module>mj-domain</module>
     </modules>
 
     <properties>
@@ -25,30 +37,61 @@
         <junit-jupiter.version>5.8.1</junit-jupiter.version>
         <spring-boot.version>3.5.6</spring-boot.version>
         <tomcat-jasper-el.version>8.5.14</tomcat-jasper-el.version>
+        <hibernate-core.version>6.6.15.Final</hibernate-core.version>
         <hibernate-validator.version>9.0.1.Final</hibernate-validator.version>
         <hibernate-tools.version>7.1.5.Final</hibernate-tools.version>
+        <h2.version>2.3.232</h2.version>
         <rest-assured.version>4.4.0</rest-assured.version>
+        <jakarta.jms-api.version>3.1.0</jakarta.jms-api.version>
+        <jakarta.validation.version>3.1.1</jakarta.validation.version>
+        <flyway-core.version>11.7.2</flyway-core.version>
+        <mariadb.version>3.5.3</mariadb.version>
+        <micrometer.version>1.15.0</micrometer.version>
 
         <!-- Logger -->
         <slf4j.version>1.7.32</slf4j.version>
         <logback.version>1.2.6</logback.version>
+        <jcl-over-slf4j.version>2.0.17</jcl-over-slf4j.version>
     </properties>
 
-    <organization>
-        <name>SvilenStoyanov</name>
-        <url>https://github.com/SvilenStoyanov</url>
-    </organization>
 
-    <name>messen-j</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://localhost:8080/api</url>
 
     <dependencyManagement>
         <dependencies>
             <!-- Internal dependencies -->
             <dependency>
                 <groupId>com.svistoyanov.mj</groupId>
-                <artifactId>jms-api</artifactId>
+                <artifactId>mj-business-logic</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.svistoyanov.mj</groupId>
+                <artifactId>mj-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.svistoyanov.mj</groupId>
+                <artifactId>mj-dao-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.svistoyanov.mj</groupId>
+                <artifactId>mj-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.svistoyanov.mj</groupId>
+                <artifactId>mj-jms-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.svistoyanov.mj</groupId>
+                <artifactId>mj-jms-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.svistoyanov.mj</groupId>
+                <artifactId>mj-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -71,11 +114,58 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-jetty</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-artemis</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mariadb.jdbc</groupId>
+                <artifactId>mariadb-java-client</artifactId>
+                <version>${mariadb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>${micrometer.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit-jupiter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
@@ -88,6 +178,11 @@
                 <version>${hibernate-tools.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-jasper-el</artifactId>
                 <version>${tomcat-jasper-el.version}</version>
@@ -98,6 +193,26 @@
                 <artifactId>rest-assured</artifactId>
                 <version>${rest-assured.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.jms</groupId>
+                <artifactId>jakarta.jms-api</artifactId>
+                <version>${jakarta.jms-api.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>jakarta.validation-api</artifactId>
+                <groupId>jakarta.validation</groupId>
+                <version>${jakarta.validation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${jcl-over-slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
