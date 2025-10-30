@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--
+       The levels are as follows, the log level logs the described level + all below it.
+       ALL
+       TRACE
+       DEBUG
+       INFO
+       WARN
+       ERROR
+       OFF   - no logging at all
+   -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>/runtime/logs/messenger.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Default -->
+    <springProfile name="dev">
+        <logger name="com.svistoyanov.mj" level="DEBUG"/>
+    </springProfile>
+
+    <springProfile name="staging">
+        <logger name="com.svistoyanov.mj" level="INFO"/>
+    </springProfile>
+
+    <springProfile name="production">
+        <logger name="com.svistoyanov.mj" level="ERROR"/>
+    </springProfile>
+
+    <!-- 3rd party -->
+    <logger name="org.hibernate" level="ERROR" />
+    <logger name="org.apache" level="ERROR" />
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.springframework.boot.autoconfigure" level="ERROR" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
