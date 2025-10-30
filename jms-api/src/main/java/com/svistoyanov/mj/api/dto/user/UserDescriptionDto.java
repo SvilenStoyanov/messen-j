@@ -5,48 +5,40 @@ import com.svistoyanov.mj.api.dto.AbstractEntityDto;
 
 import java.util.UUID;
 
-public class UserDescriptionDto extends AbstractEntityDto
-{
+public class UserDescriptionDto extends AbstractEntityDto {
     @JsonProperty("email")
     private String email;
 
     @JsonProperty("username")
     private String username;
 
-    public UserDescriptionDto()
-    {
+    public UserDescriptionDto() {
     }
 
-    public UserDescriptionDto(String email, String username)
-    {
+    public UserDescriptionDto(String email, String username) {
         this.email = email;
         this.username = username;
     }
 
-        public UserDescriptionDto(UUID id, String email, String username)
-    {
+    public UserDescriptionDto(UUID id, String email, String username) {
         super(id);
         this.email = email;
         this.username = username;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 }

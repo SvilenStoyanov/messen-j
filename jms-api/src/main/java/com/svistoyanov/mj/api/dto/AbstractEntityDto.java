@@ -4,27 +4,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
 
-public abstract class AbstractEntityDto extends AbstractDto
-{
+public abstract class AbstractEntityDto extends AbstractDto {
     @JsonProperty("id")
     private UUID id;
 
-    protected AbstractEntityDto()
-    {
+    protected AbstractEntityDto() {
     }
 
-    protected AbstractEntityDto(UUID id)
-    {
+    protected AbstractEntityDto(UUID id) {
         this.id = id;
     }
 
-    public UUID getId()
-    {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id)
-    {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

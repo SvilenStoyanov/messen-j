@@ -8,9 +8,11 @@ import com.svistoyanov.mj.api.dto.user.UsersWrapperDto;
 
 import java.util.concurrent.CompletableFuture;
 
-public interface AdministrationEndpoint extends Endpoint
-{
+public interface AdministrationEndpoint extends Endpoint {
+
     CompletableFuture<Void> signUp(SignUpDto signUpDto);
+
     CompletableFuture<UserDto> signIn(SignInDto signInDto);
+
     CompletableFuture<UsersWrapperDto> loadUsers(UsersFilterDto filter);
 }

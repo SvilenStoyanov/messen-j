@@ -1,7 +1,6 @@
 package com.svistoyanov.mj.api.dto;
 
-public enum ErrorCodesDto
-{
+public enum ErrorCodesDto {
     FORBIDDEN,
     NOT_FOUND,
     CONFLICT,

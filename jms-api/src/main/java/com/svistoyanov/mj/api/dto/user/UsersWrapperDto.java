@@ -6,27 +6,22 @@ import com.svistoyanov.mj.api.dto.AbstractDto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersWrapperDto extends AbstractDto
-{
+public class UsersWrapperDto extends AbstractDto {
     @JsonProperty("users")
     private List<UserDescriptionDto> users = new ArrayList<>();
 
-    public UsersWrapperDto()
-    {
+    public UsersWrapperDto() {
     }
 
-    public UsersWrapperDto(List<UserDescriptionDto> users)
-    {
+    public UsersWrapperDto(List<UserDescriptionDto> users) {
         this.users = users;
     }
 
-    public List<UserDescriptionDto> getUsers()
-    {
+    public List<UserDescriptionDto> getUsers() {
         return new ArrayList<>(users);
     }
 
-    public void setUsers(List<UserDescriptionDto> users)
-    {
+    public void setUsers(List<UserDescriptionDto> users) {
         this.users = users;
     }
 }

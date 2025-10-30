@@ -5,8 +5,7 @@ import com.svistoyanov.mj.api.dto.AbstractEntityDto;
 
 import java.util.UUID;
 
-public class UserDto extends AbstractEntityDto
-{
+public class UserDto extends AbstractEntityDto {
     @JsonProperty("email")
     private String email;
 
@@ -16,45 +15,37 @@ public class UserDto extends AbstractEntityDto
     @JsonProperty("messagesCount")
     private long messagesCount;
 
-    public UserDto()
-    {
+    public UserDto() {
     }
 
-    public UserDto(UUID id, String email, String password, long messagesCount)
-    {
+    public UserDto(UUID id, String email, String password, long messagesCount) {
         super(id);
         this.email = email;
         this.password = password;
         this.messagesCount = messagesCount;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public long getMessagesCount()
-    {
+    public long getMessagesCount() {
         return messagesCount;
     }
 
-    public void setMessagesCount(long messagesCount)
-    {
+    public void setMessagesCount(long messagesCount) {
         this.messagesCount = messagesCount;
     }
 }
