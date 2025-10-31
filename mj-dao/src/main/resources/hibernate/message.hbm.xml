@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.svistoyanov.mj.entity">
+    <class name = "Message" table = "messages">
+
+        <id name = "id" column = "message_id" type = "org.hibernate.type.UUIDCharType" >
+
+        </id>
+
+
+        <property name = "version" column = "version" type = "int"/>
+
+        <many-to-one name="author" class="com.svistoyanov.mj.entity.User"
+                     column="author_id" not-null="true" foreign-key="FK_messages_authors"/>
+
+        <many-to-one name="recipient" class="com.svistoyanov.mj.entity.User"
+                     column="recipient_id" not-null="true" foreign-key="FK_messages_recipients"/>
+
+        <property name = "content" column = "content" type = "string" not-null="true" length="500"/>
+
+
+        <property name = "sentAt" column = "sentAt" type = "LocalDateTime" not-null="true"/>
+
+    </class>
+</hibernate-mapping>
