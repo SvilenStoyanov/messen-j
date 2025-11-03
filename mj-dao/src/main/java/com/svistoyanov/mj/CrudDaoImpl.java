@@ -2,7 +2,7 @@ package com.svistoyanov.mj;
 
 import java.util.UUID;
 
-public abstract class CrudDaoImpl<T, Repository extends UserRepository<T, UUID>> implements CrudDao<T> {
+public abstract class CrudDaoImpl<T, Repository extends BaseRepository<T, UUID>> implements CrudDao<T> {
 
     protected Repository repository;
 

@@ -6,9 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
-import java.util.UUID;
 
-public class UserDaoImpl extends CrudDaoImpl<User, UserRepository<User, UUID>> implements UserDao {
+public class UserDaoImpl extends CrudDaoImpl<User, UserRepository> implements UserDao {
 
     public UserDaoImpl(UserRepository repository) {
         super(repository);

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.UUID;
 
-public interface MessageRepository extends UserRepository<Message, UUID> {
+public interface MessageRepository extends BaseRepository<Message, UUID> {
 
         Message findMessageByAuthorId(UUID authorId);
 
