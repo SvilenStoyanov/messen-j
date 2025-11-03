@@ -1,6 +1,8 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo.impl;
 
+import com.svistoyanov.mj.UserDao;
 import com.svistoyanov.mj.entity.User;
+import com.svistoyanov.mj.repo.UserRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

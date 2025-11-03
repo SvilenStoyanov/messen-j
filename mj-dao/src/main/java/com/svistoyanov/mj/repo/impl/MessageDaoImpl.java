@@ -1,6 +1,8 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo.impl;
 
+import com.svistoyanov.mj.MessageDao;
 import com.svistoyanov.mj.entity.Message;
+import com.svistoyanov.mj.repo.MessageRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

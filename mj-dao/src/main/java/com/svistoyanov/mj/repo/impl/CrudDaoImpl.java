@@ -1,4 +1,7 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo.impl;
+
+import com.svistoyanov.mj.CrudDao;
+import com.svistoyanov.mj.repo.BaseRepository;
 
 import java.util.UUID;
 

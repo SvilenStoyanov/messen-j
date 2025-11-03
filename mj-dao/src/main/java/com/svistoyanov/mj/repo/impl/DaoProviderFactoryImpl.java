@@ -1,5 +1,7 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo.impl;
 
+import com.svistoyanov.mj.DaoProvider;
+import com.svistoyanov.mj.DaoProviderFactory;
 import org.hibernate.SessionFactory;
 
 public class DaoProviderFactoryImpl implements DaoProviderFactory {

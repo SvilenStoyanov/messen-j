@@ -1,7 +1,7 @@
 package com.svistoyanov.mj.config.spring;
 
 import com.svistoyanov.mj.DaoProviderFactory;
-import com.svistoyanov.mj.DaoProviderFactoryImpl;
+import com.svistoyanov.mj.repo.impl.DaoProviderFactoryImpl;
 import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;

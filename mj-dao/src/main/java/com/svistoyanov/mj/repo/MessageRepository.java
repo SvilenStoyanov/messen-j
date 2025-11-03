@@ -1,4 +1,4 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo;
 
 import com.svistoyanov.mj.entity.Message;
 import org.springframework.data.domain.Pageable;

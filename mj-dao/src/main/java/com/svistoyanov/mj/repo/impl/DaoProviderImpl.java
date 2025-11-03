@@ -1,14 +1,19 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo.impl;
 
+import com.svistoyanov.mj.DaoProvider;
+import com.svistoyanov.mj.MessageDao;
+import com.svistoyanov.mj.UserDao;
+import com.svistoyanov.mj.repo.MessageRepository;
+import com.svistoyanov.mj.repo.UserRepository;
 import org.hibernate.Session;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
 public class DaoProviderImpl implements DaoProvider {
 
-    private final Session session;
+    private final Session              session;
     private final JpaRepositoryFactory factory;
-    private UserDao userDao;
-    private MessageDao messageDao;
+    private       UserDao              userDao;
+    private       MessageDao           messageDao;
 
     public DaoProviderImpl(Session session) {
         this.session = session;

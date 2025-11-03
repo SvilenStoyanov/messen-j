@@ -1,4 +1,4 @@
-package com.svistoyanov.mj;
+package com.svistoyanov.mj.repo;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

@@ -1,5 +1,6 @@
 package com.svistoyanov.mj;
 
+import com.svistoyanov.mj.repo.impl.DaoProviderFactoryImpl;
 import com.svistoyanov.mj.utils.HibernateUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
