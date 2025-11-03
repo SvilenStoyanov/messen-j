@@ -21,6 +21,7 @@
         <module>mj-dao</module>
         <module>mj-dao-api</module>
         <module>mj-domain</module>
+        <module>mj-docker</module>
     </modules>
 
     <properties>

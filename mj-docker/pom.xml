@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.svistoyanov.mj</groupId>
+        <artifactId>mj-parent</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>mj-docker</artifactId>
+    <name>Docker</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <docker.registry>docker.dev.svistoyanov.com</docker.registry>
+        <cs-docker.version>1.1.0-SNAPSHOT</cs-docker.version>
+        <messenger.docker.image.name>messen-j</messenger.docker.image.name>
+        <messenger.docker.image.tag>${project.version}</messenger.docker.image.tag>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.svistoyanov.mj</groupId>
+            <artifactId>mj-server</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>build-docker-image</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>${docker.registry}/${messenger.docker.image.name}:${messenger.docker.image.tag}</name>
+                                    <build>
+                                        <dockerFile>Dockerfile</dockerFile>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>docker:build</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <!--                    <execution>-->
+                            <!--                        <id>docker:push</id>-->
+                            <!--                        <phase>deploy</phase>-->
+                            <!--                        <goals>-->
+                            <!--                            <goal>push</goal>-->
+                            <!--                        </goals>-->
+                            <!--                    </execution>-->
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <executions>
+                            <execution>
+                                <id>copy</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.svistoyanov.mj</groupId>
+                                            <artifactId>mj-server</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>mj-server.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>${project.build.directory}/docker/${docker.registry}/${messenger.docker.image.name}/${messenger.docker.image.tag}/build</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>true</overWriteSnapshots>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
