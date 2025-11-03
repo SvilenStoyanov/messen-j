@@ -1,9 +1,10 @@
 FROM eclipse-temurin:21-jre-jammy
 
-ENV JAR_LOCATION="/data/messen-j/server.jar"
+ENV JAR_LOCATION="/application/mj-server.jar"
 
-#COPY ../../docker.dev.brandmaker.com/messenger-image/1.0.0-SNAPSHOT/build/server.jar $JAR_LOCATION
-COPY mj-server.jar $JAR_LOCATION
+RUN mkdir /application/ && chmod -R a+rwx /application/
+
+COPY maven/mj-server.jar $JAR_LOCATION
 COPY scripts /scripts
 
 RUN chmod -R a+x /scripts/*.sh \

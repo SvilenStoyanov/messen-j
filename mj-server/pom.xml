@@ -13,6 +13,12 @@
     <name>Server</name>
     <packaging>jar</packaging>
 
+    <properties>
+        <docker.registry>docker.io</docker.registry>
+        <messenger.docker.image.name>messen-j</messenger.docker.image.name>
+        <messenger.docker.image.tag>${project.version}</messenger.docker.image.tag>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.svistoyanov.mj</groupId>
@@ -80,12 +86,62 @@
             </plugin>
 
             <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <configuration>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>build-standalone-jar</id>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                            <classifier>full</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>${project.groupId}/${messenger.docker.image.name}:${messenger.docker.image.tag}</name>
+                            <build>
+                                <!-- Dockerfile location inside the module -->
+                                <dockerFile>${project.basedir}/src/main/docker/Dockerfile</dockerFile>
+                                <!-- Build context that includes scripts and uses assembly output under maven/ -->
+                                <contextDir>${project.basedir}/src/main/docker</contextDir>
+                                <assembly>
+                                    <mode>dir</mode>
+                                    <targetDir>/maven</targetDir>
+                                    <descriptor>${project.basedir}/src/main/docker/assembly.xml</descriptor>
+                                </assembly>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker-build-on-install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
                         </goals>
                     </execution>
                 </executions>
