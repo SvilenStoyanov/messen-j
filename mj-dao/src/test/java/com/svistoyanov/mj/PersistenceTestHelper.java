@@ -12,25 +12,23 @@ public class PersistenceTestHelper {
 
     private static SessionFactory sessionFactory;
 
-    public static DaoProviderFactory getDaoProviderFactory()
-    {
+    public static DaoProviderFactory getDaoProviderFactory() {
         if (sessionFactory == null) {
             sessionFactory = buildSessionFactory();
         }
         return new DaoProviderFactoryImpl(sessionFactory);
     }
 
-    private static SessionFactory buildSessionFactory()
-    {
+    private static SessionFactory buildSessionFactory() {
         Configuration configuration = new Configuration();
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .configure("/hibernate.cfg.xml")
-                .applySetting(AvailableSettings.DRIVER,org.h2.Driver.class.getName())
-                .applySetting(AvailableSettings.USER,"root")
-                .applySetting(AvailableSettings.PASS,"root")
-                .applySetting(AvailableSettings.URL,"jdbc:h2:mem:testDb")
-                .applySetting(AvailableSettings.DIALECT,org.hibernate.dialect.H2Dialect.class.getName())
+                .applySetting(AvailableSettings.DRIVER, org.h2.Driver.class.getName())
+                .applySetting(AvailableSettings.USER, "root")
+                .applySetting(AvailableSettings.PASS, "root")
+                .applySetting(AvailableSettings.URL, "jdbc:h2:mem:testDb")
+                .applySetting(AvailableSettings.DIALECT, org.hibernate.dialect.H2Dialect.class.getName())
                 .build();
 
         SchemaProvider.provideSchemaInDb(serviceRegistry);
@@ -39,9 +37,7 @@ public class PersistenceTestHelper {
         return configuration.buildSessionFactory(serviceRegistry);
     }
 
-    public static void resetAllTables()
-    {
+    public static void resetAllTables() {
         HibernateUtils.eraseAllTables(sessionFactory);
     }
-
 }

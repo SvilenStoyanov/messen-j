@@ -124,14 +124,21 @@
                             <name>${project.groupId}/${messenger.docker.image.name}:${messenger.docker.image.tag}</name>
                             <build>
                                 <!-- Dockerfile location inside the module -->
-                                <dockerFile>${project.basedir}/src/main/docker/Dockerfile</dockerFile>
+                                <dockerFile>${project.basedir}/src/main/docker/messenj/Dockerfile</dockerFile>
                                 <!-- Build context that includes scripts and uses assembly output under maven/ -->
-                                <contextDir>${project.basedir}/src/main/docker</contextDir>
+                                <contextDir>${project.basedir}/src/main/docker/messenj</contextDir>
                                 <assembly>
                                     <mode>dir</mode>
                                     <targetDir>/maven</targetDir>
-                                    <descriptor>${project.basedir}/src/main/docker/assembly.xml</descriptor>
+                                    <descriptor>${project.basedir}/src/main/docker/messenj/assembly.xml</descriptor>
                                 </assembly>
+                            </build>
+                        </image>
+                        <image>
+                            <name>${project.groupId}/${messenger.docker.image.name}-broker:${messenger.docker.image.tag}</name>
+                            <build>
+                                <dockerFile>${project.basedir}/src/main/docker/artemis/Dockerfile</dockerFile>
+                                <contextDir>${project.basedir}/src/main/docker/artemis</contextDir>
                             </build>
                         </image>
                     </images>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>target/logs/msg-integration-tests.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="msg-container" class="ch.qos.logback.core.FileAppender">
+        <file>target/logs/containers/msg.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="msg-broker" class="ch.qos.logback.core.FileAppender">
+        <file>target/logs/containers/msg-broker.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="containers" level="TRACE" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="containers.msg" level="TRACE">
+        <appender-ref ref="msg-container" />>
+    </logger>
+
+    <logger name="containers.artemis" level="TRACE">
+        <appender-ref ref="msg-broker" />>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+
+</configuration>
