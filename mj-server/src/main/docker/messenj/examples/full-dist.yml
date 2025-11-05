@@ -1,0 +1,46 @@
+services:
+
+  mj-mysql:
+    container_name: mj-mysql
+    image: docker.dev.svistoyanov.com/messen-j-mysql:${MJ_VERSION}
+    environment:
+      - MYSQL_ROOT_PASSWORD=q
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mj-mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - mj_network
+
+  messen-j:
+    container_name: messen-j
+    image: docker.dev.svistoyanov.com/messen-j:${MJ_VERSION}
+    mem_limit: 1G
+    mem_reservation: 256M
+    environment:
+      - DEBUG=${DEBUG}
+      - JAVA_OPTS=${JAVA_OPTS}
+      - PROFILE=${PROFILE}
+      - DB_URL=${DB_URL}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - type: bind
+        source: /home/{user}/docker/runtime/logs/dev/messen-j
+        target: /runtime/logs
+    ports:
+      - "8787:8787"
+      - "8080:8080"
+    networks:
+      - mj_network
+    depends_on:
+      - mj-mysql
+
+networks:
+  mj_network:
+
+volumes:
+  mj-mysql:

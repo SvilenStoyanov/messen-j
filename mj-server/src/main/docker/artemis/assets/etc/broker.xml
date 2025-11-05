@@ -36,10 +36,10 @@ under the License.
              NIO: Plain Java Files
          -->
         <journal-type>NIO</journal-type>
-        <paging-directory>/runtime/artemis-broker-messenj-data/paging</paging-directory>
-        <bindings-directory>/runtime/artemis-broker-messenj-data/bindings</bindings-directory>
-        <journal-directory>/runtime/artemis-broker-messenj-data/journal</journal-directory>
-        <large-messages-directory>/runtime/artemis-broker-messenj-data/large-messages</large-messages-directory>
+        <paging-directory>/runtime/artemis-broker-mj-data/paging</paging-directory>
+        <bindings-directory>/runtime/artemis-broker-mj-data/bindings</bindings-directory>
+        <journal-directory>/runtime/artemis-broker-mj-data/journal</journal-directory>
+        <large-messages-directory>/runtime/artemis-broker-mj-data/large-messages</large-messages-directory>
         <journal-datasync>true</journal-datasync>
         <journal-min-files>2</journal-min-files>
         <journal-pool-files>10</journal-pool-files>

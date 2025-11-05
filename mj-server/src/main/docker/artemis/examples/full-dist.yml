@@ -1,0 +1,23 @@
+services:
+
+  mj-broker:
+    container_name: mj-broker
+    image: docker.dev.svistoyanov.com/messen-j-broker:${MJ_VERSION}
+    environment:
+      - CLEAN_ON_START=true
+      - JMS_USER_NAME=${JMS_USER}
+      - JMS_USER_PASS=${JMS_PASSWORD}
+      - JVM_MEMORY=-Xms1g -Xmx4g
+    volumes:
+      - type: bind
+        source: ${MJ_JMS_BROKER_STORAGE_DIRECTORY}
+        target: /runtime/artemis-broker-mj-data
+    networks:
+      - mj_network
+    ports:
+      - "8020:8020"
+      - "8161:8161"
+      - "61616:61616"
+
+networks:
+  mj_network:
