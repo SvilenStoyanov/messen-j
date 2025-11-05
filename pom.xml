@@ -50,8 +50,8 @@
         <micrometer.version>1.15.0</micrometer.version>
 
         <!-- Logger -->
-        <slf4j.version>1.7.32</slf4j.version>
-        <logback.version>1.5.13</logback.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <logback.version>1.5.20</logback.version>
         <jcl-over-slf4j.version>2.0.17</jcl-over-slf4j.version>
     </properties>
 
@@ -120,6 +120,11 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${jcl-over-slf4j.version}</version>
+            </dependency>
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -187,9 +192,9 @@
                 <version>${flyway-core.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>${jcl-over-slf4j.version}</version>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-mysql</artifactId>
+                <version>${flyway-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

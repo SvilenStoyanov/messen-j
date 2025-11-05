@@ -2,7 +2,7 @@ services:
 
   mj-mysql:
     container_name: mj-mysql
-    image: docker.dev.svistoyanov.com/messen-j-mysql:${MJ_VERSION}
+    image: mysql:8.0.44-debian
     environment:
       - MYSQL_ROOT_PASSWORD=q
       - MYSQL_DATABASE=${DB_DATABASE}
@@ -14,6 +14,12 @@ services:
       - "3306:3306"
     networks:
       - mj_network
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} --silent" ]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 20s
 
   messen-j:
     container_name: messen-j
@@ -29,7 +35,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
       - type: bind
-        source: /home/{user}/docker/runtime/logs/dev/messen-j
+        source: /home/svilen/docker/runtime/logs/dev/messen-j
         target: /runtime/logs
     ports:
       - "8787:8787"
@@ -37,7 +43,8 @@ services:
     networks:
       - mj_network
     depends_on:
-      - mj-mysql
+      mj-mysql:
+        condition: service_healthy
 
 networks:
   mj_network:

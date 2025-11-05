@@ -19,9 +19,6 @@ public class FlywayConfiguration {
         config.setCleanOnValidationError(false);
         config.setOutOfOrder(false);                // Do not execute migrations with version lower than the latest applied
         config.setValidateOnMigrate(true);          // Validate that the migrations applied to the database are the ones on the classpath
-//        config.setIgnoreFutureMigrations(false);    // Fail when migrations with a version higher than the highest available on classpath have been applied.
-//        config.setIgnoreMissingMigrations(false);   // Fail when migrations with a version between the lowest and highest available on classpath have been applied.
-//        config.setIgnoreIgnoredMigrations(false);   // Fail when migrations on the classpath is between the lowest and highest applied
         return config;
     }
 
