@@ -13,4 +13,5 @@ RUN chmod -R a+rwx /assets/artemis
 # Switch back to the default runtime user
 USER artemis
 
-CMD /scripts/artemis/start-container.sh
+#CMD /scripts/artemis/start-container.sh
+CMD ["/bin/artemis-service", "start"]
